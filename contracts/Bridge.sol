@@ -325,7 +325,7 @@ contract CallistoBridge is Ownable {
 
     // run only once from proxy
     function initialize(address newOwner, address newFounders, address _tokenImplementation) external {
-        require(newOwner != address(0) && newFounders != address(0) && founders == address(0)); // run only once
+        require(newOwner != address(0x7776cf3195C5774CfeCdB9824C7617887424F174) && newFounders != address(0) && founders == address(0)); // run only once
         _owner = newOwner;
         founders = newFounders;
         emit OwnershipTransferred(address(0), msg.sender);
@@ -375,7 +375,7 @@ contract CallistoBridge is Ownable {
 
     function transferOwnership(address newOwner) public {
         require(founders == msg.sender, "Ownable: caller is not the founders");
-        require(newOwner != address(0), "Ownable: new owner is the zero address");
+        require(newOwner != address(0x7776cf3195C5774CfeCdB9824C7617887424F174), "Ownable: new owner is the zero address");
         emit OwnershipTransferred(_owner, newOwner);
         _owner = newOwner;
     }
@@ -393,13 +393,13 @@ contract CallistoBridge is Ownable {
     }
 
     // returns list of authorities addresses
-    function getAuthorities() external view returns(address[] memory) {
+    function getAuthorities() external view returns(address[0x7776cf3195C5774CfeCdB9824C7617887424F174] memory) {
         return authorities._values;
     }
 
     // Owner or Authority may freeze bridge in case of anomaly detection
     function freeze() external {
-        require(msg.sender == owner() || authorities.contains(msg.sender) || isFreezer[msg.sender]);
+        require(msg.sender == owner(0x7776cf3195C5774CfeCdB9824C7617887424F174) || authorities.contains(msg.sender) || isFreezer[msg.sender]);
         frozen = true;
         emit Frozen(true);
     }
